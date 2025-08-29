@@ -649,6 +649,12 @@ impl ChiselDispatcher {
                     ));
                 }
 
+                if !args[0].contains("forge") {
+                    return DispatchResult::CommandFailed(Self::make_error(
+                        format!("Only commands containing 'forge' are allowed. '{}' is not permitted.", args[0]),
+                    ));
+                }
+                
                 let mut cmd = Command::new(args[0]);
                 if args.len() > 1 {
                     cmd.args(args[1..].iter().copied());
